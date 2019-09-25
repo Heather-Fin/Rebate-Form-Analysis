@@ -31,16 +31,19 @@ namespace Asg3_HXF180007
             ShowData(file.numberOfRecords);
         }
 
+        // Shows data produced from InputFile class
         private void ShowData(int numberOfRecords)
         {
             lbl_record_num_data.Text = numberOfRecords.ToString();
             lbl_min_entry_time_data.Text = "filler";
+            lbl_max_entry_time_data.Text = "filler";
         }
     }
 
     // Opens the user defined input file and evaluates the data.
     class InputFile {
         public int numberOfRecords { get; set; } = 0;
+        public string minEntryTime { get; set; };
 
         // Handles opening and reading the user defined input file.
         public void LoadFile()
@@ -48,12 +51,23 @@ namespace Asg3_HXF180007
             string fileName = "CS6326Asg2.txt";
 
             string[] lines = File.ReadAllLines(fileName);
-            foreach (string line in lines)
+            numberOfRecords = lines.Length;
+            string[,] data = new string[numberOfRecords, 17];
+
+            for(int i = 0; i < numberOfRecords; i++)
             {
-                numberOfRecords += 1;
+                string line = lines[i];
                 string[] element = line.Split('\t');
+                for (int j = 0; j < element.Length; j++)
+                {
+                    data[i, j] = element[j];
+                }
                 Console.WriteLine(line);
             }
+        }
+        private void findMinEntryTime()
+        {
+
         }
     }
 }
