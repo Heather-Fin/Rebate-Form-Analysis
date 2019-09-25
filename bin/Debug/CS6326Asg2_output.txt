@@ -1,0 +1,9 @@
+Number of records: 
+Minimum entry time: 
+Maximum entry time: 
+Average entry time: 
+Minimum inter-record time: 
+Maximum inter-record time: 
+Average inter-record time: 
+Total time: 
+Backspace count: 

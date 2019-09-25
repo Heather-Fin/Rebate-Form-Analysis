@@ -36,6 +36,10 @@
             this.lbl_max_entry_time_data = new System.Windows.Forms.Label();
             this.lbl_average_entry_time = new System.Windows.Forms.Label();
             this.lbl_average_entry_time_data = new System.Windows.Forms.Label();
+            this.lbl_total_time = new System.Windows.Forms.Label();
+            this.lbl_backspace_count = new System.Windows.Forms.Label();
+            this.lbl_total_time_data = new System.Windows.Forms.Label();
+            this.lbl_backspace_count_data = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_record_num
@@ -109,11 +113,51 @@
             this.lbl_average_entry_time_data.Size = new System.Drawing.Size(0, 13);
             this.lbl_average_entry_time_data.TabIndex = 7;
             // 
+            // lbl_total_time
+            // 
+            this.lbl_total_time.AutoSize = true;
+            this.lbl_total_time.Location = new System.Drawing.Point(38, 302);
+            this.lbl_total_time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_total_time.Name = "lbl_total_time";
+            this.lbl_total_time.Size = new System.Drawing.Size(60, 13);
+            this.lbl_total_time.TabIndex = 8;
+            this.lbl_total_time.Text = "Total Time:";
+            // 
+            // lbl_backspace_count
+            // 
+            this.lbl_backspace_count.AutoSize = true;
+            this.lbl_backspace_count.Location = new System.Drawing.Point(38, 328);
+            this.lbl_backspace_count.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_backspace_count.Name = "lbl_backspace_count";
+            this.lbl_backspace_count.Size = new System.Drawing.Size(95, 13);
+            this.lbl_backspace_count.TabIndex = 9;
+            this.lbl_backspace_count.Text = "Backspace Count:";
+            // 
+            // lbl_total_time_data
+            // 
+            this.lbl_total_time_data.AutoSize = true;
+            this.lbl_total_time_data.Location = new System.Drawing.Point(103, 302);
+            this.lbl_total_time_data.Name = "lbl_total_time_data";
+            this.lbl_total_time_data.Size = new System.Drawing.Size(0, 13);
+            this.lbl_total_time_data.TabIndex = 10;
+            // 
+            // lbl_backspace_count_data
+            // 
+            this.lbl_backspace_count_data.AutoSize = true;
+            this.lbl_backspace_count_data.Location = new System.Drawing.Point(138, 328);
+            this.lbl_backspace_count_data.Name = "lbl_backspace_count_data";
+            this.lbl_backspace_count_data.Size = new System.Drawing.Size(0, 13);
+            this.lbl_backspace_count_data.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 456);
+            this.Controls.Add(this.lbl_backspace_count_data);
+            this.Controls.Add(this.lbl_total_time_data);
+            this.Controls.Add(this.lbl_backspace_count);
+            this.Controls.Add(this.lbl_total_time);
             this.Controls.Add(this.lbl_average_entry_time_data);
             this.Controls.Add(this.lbl_average_entry_time);
             this.Controls.Add(this.lbl_max_entry_time_data);
@@ -140,6 +184,10 @@
         private System.Windows.Forms.Label lbl_max_entry_time_data;
         private System.Windows.Forms.Label lbl_average_entry_time;
         private System.Windows.Forms.Label lbl_average_entry_time_data;
+        private System.Windows.Forms.Label lbl_total_time;
+        private System.Windows.Forms.Label lbl_backspace_count;
+        private System.Windows.Forms.Label lbl_total_time_data;
+        private System.Windows.Forms.Label lbl_backspace_count_data;
     }
 }
 
