@@ -26,33 +26,33 @@ namespace Asg3_HXF180007
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            InputFile.loadFile();
+            InputFile file = new InputFile();
+            file.LoadFile();
+            ShowData(file.numberOfRecords);
+        }
+
+        private void ShowData(int numberOfRecords)
+        {
+            lbl_record_num_data.Text = numberOfRecords.ToString();
+            lbl_min_entry_time_data.Text = "filler";
         }
     }
 
     // Opens the user defined input file and evaluates the data.
-    public class InputFile{
+    class InputFile {
+        public int numberOfRecords { get; set; } = 0;
 
         // Handles opening and reading the user defined input file.
-        public static void loadFile()
+        public void LoadFile()
         {
             string fileName = "CS6326Asg2.txt";
 
-            if (File.Exists(fileName))
+            string[] lines = File.ReadAllLines(fileName);
+            foreach (string line in lines)
             {
-                StreamReader sr = new StreamReader(fileName);
-
-                while (sr.Peek() > -1)
-                {
-                    string line = sr.ReadLine();
-                    string[] element = line.Split('\t');
-
-                    for (int i = 0; i < 12; i++)
-                    {
-                        Console.WriteLine(element[i]);
-                    }
-                }
-                sr.Close();
+                numberOfRecords += 1;
+                string[] element = line.Split('\t');
+                Console.WriteLine(line);
             }
         }
     }
