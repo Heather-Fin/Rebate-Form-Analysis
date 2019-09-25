@@ -34,6 +34,8 @@
             this.lbl_min_entry_time_data = new System.Windows.Forms.Label();
             this.lbl_max_entry_time = new System.Windows.Forms.Label();
             this.lbl_max_entry_time_data = new System.Windows.Forms.Label();
+            this.lbl_average_entry_time = new System.Windows.Forms.Label();
+            this.lbl_average_entry_time_data = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_record_num
@@ -89,11 +91,31 @@
             this.lbl_max_entry_time_data.Size = new System.Drawing.Size(0, 13);
             this.lbl_max_entry_time_data.TabIndex = 5;
             // 
+            // lbl_average_entry_time
+            // 
+            this.lbl_average_entry_time.AutoSize = true;
+            this.lbl_average_entry_time.Location = new System.Drawing.Point(38, 174);
+            this.lbl_average_entry_time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_average_entry_time.Name = "lbl_average_entry_time";
+            this.lbl_average_entry_time.Size = new System.Drawing.Size(103, 13);
+            this.lbl_average_entry_time.TabIndex = 6;
+            this.lbl_average_entry_time.Text = "Average Entry Time:";
+            // 
+            // lbl_average_entry_time_data
+            // 
+            this.lbl_average_entry_time_data.AutoSize = true;
+            this.lbl_average_entry_time_data.Location = new System.Drawing.Point(150, 174);
+            this.lbl_average_entry_time_data.Name = "lbl_average_entry_time_data";
+            this.lbl_average_entry_time_data.Size = new System.Drawing.Size(0, 13);
+            this.lbl_average_entry_time_data.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 456);
+            this.Controls.Add(this.lbl_average_entry_time_data);
+            this.Controls.Add(this.lbl_average_entry_time);
             this.Controls.Add(this.lbl_max_entry_time_data);
             this.Controls.Add(this.lbl_max_entry_time);
             this.Controls.Add(this.lbl_min_entry_time_data);
@@ -116,6 +138,8 @@
         private System.Windows.Forms.Label lbl_min_entry_time_data;
         private System.Windows.Forms.Label lbl_max_entry_time;
         private System.Windows.Forms.Label lbl_max_entry_time_data;
+        private System.Windows.Forms.Label lbl_average_entry_time;
+        private System.Windows.Forms.Label lbl_average_entry_time_data;
     }
 }
 

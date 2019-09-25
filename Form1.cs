@@ -28,22 +28,23 @@ namespace Asg3_HXF180007
         {
             InputFile file = new InputFile();
             file.LoadFile();
-            ShowData(file.numberOfRecords);
+            ShowData(file);
         }
 
         // Shows data produced from InputFile class
-        private void ShowData(int numberOfRecords)
+        private void ShowData(InputFile file)
         {
-            lbl_record_num_data.Text = numberOfRecords.ToString();
-            lbl_min_entry_time_data.Text = "filler";
-            lbl_max_entry_time_data.Text = "filler";
+            lbl_record_num_data.Text = file.numberOfRecords.ToString();
+            lbl_min_entry_time_data.Text = (file.findMinEntryTime()).ToString();
+            lbl_max_entry_time_data.Text = (file.findMaxEntryTime()).ToString();
+            lbl_average_entry_time_data.Text = (file.findAverageEntryTime()).ToString();
         }
     }
 
     // Opens the user defined input file and evaluates the data.
     class InputFile {
-        public int numberOfRecords { get; set; } = 0;
-        public string minEntryTime { get; set; };
+        public int numberOfRecords;
+        private string[,] data;
 
         // Handles opening and reading the user defined input file.
         public void LoadFile()
@@ -52,7 +53,7 @@ namespace Asg3_HXF180007
 
             string[] lines = File.ReadAllLines(fileName);
             numberOfRecords = lines.Length;
-            string[,] data = new string[numberOfRecords, 17];
+            data = new string[numberOfRecords, 17];
 
             for(int i = 0; i < numberOfRecords; i++)
             {
@@ -62,12 +63,50 @@ namespace Asg3_HXF180007
                 {
                     data[i, j] = element[j];
                 }
-                Console.WriteLine(line);
             }
         }
-        private void findMinEntryTime()
-        {
 
+        // Finds the minimum entry time for all records
+        public TimeSpan findMinEntryTime()
+        {
+            TimeSpan minTime = TimeSpan.Parse(data[0,13]);
+            Console.WriteLine(minTime);
+            for (int i = 0; i < numberOfRecords; i++)
+            {
+                TimeSpan temp = TimeSpan.Parse(data[i, 13]);
+                if(temp < minTime)
+                {
+                    minTime = temp;
+                }
+            }
+            return minTime;
+        }
+
+        // Finds the maxiumum entry time for all records
+        public TimeSpan findMaxEntryTime()
+        {
+            TimeSpan maxTime = TimeSpan.Parse(data[0, 13]);
+            Console.WriteLine(maxTime);
+            for (int i = 0; i < numberOfRecords; i++)
+            {
+                TimeSpan temp = TimeSpan.Parse(data[i, 13]);
+                if (temp > maxTime)
+                {
+                    maxTime = temp;
+                }
+            }
+            return maxTime;
+        }
+
+        // Averages the entry time for all records
+        public TimeSpan findAverageEntryTime()
+        {
+            TimeSpan averageTime = TimeSpan.Zero;
+            for(int i = 0; i < numberOfRecords; i++)
+            {
+                averageTime += TimeSpan.Parse(data[i, 13]);
+            }
+            return averageTime;
         }
     }
 }
