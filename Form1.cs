@@ -47,6 +47,17 @@ namespace Asg3_HXF180007
             lbl_total_time_data.Text = file.findTotalEntryTime();
             lbl_backspace_count_data.Text = (file.findTotalBackspaces()).ToString();
         }
+
+        private void Btn_open_file_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("button clicked");
+            openFileDialog1.ShowDialog();
+            /*
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Console.WriteLine("File selected");
+            } */
+        }
     }
 
     // Opens the user defined input file and evaluates the data.
@@ -191,7 +202,6 @@ namespace Asg3_HXF180007
             // Removes ".txt" from fileName to add new ending for output file
             string newFileName = fileName.Remove(fileName.Length -4, 4); 
             newFileName += "_output.txt";
-            Console.WriteLine(newFileName);
 
             // Create a file to write to and enters data
             using (StreamWriter sw = File.CreateText(newFileName))

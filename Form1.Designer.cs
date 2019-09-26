@@ -40,6 +40,8 @@
             this.lbl_backspace_count = new System.Windows.Forms.Label();
             this.lbl_total_time_data = new System.Windows.Forms.Label();
             this.lbl_backspace_count_data = new System.Windows.Forms.Label();
+            this.btn_open_file = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // lbl_record_num
@@ -149,11 +151,30 @@
             this.lbl_backspace_count_data.Size = new System.Drawing.Size(0, 13);
             this.lbl_backspace_count_data.TabIndex = 11;
             // 
+            // btn_open_file
+            // 
+            this.btn_open_file.Location = new System.Drawing.Point(179, 31);
+            this.btn_open_file.Name = "btn_open_file";
+            this.btn_open_file.Size = new System.Drawing.Size(75, 23);
+            this.btn_open_file.TabIndex = 12;
+            this.btn_open_file.Text = "Open File";
+            this.btn_open_file.UseVisualStyleBackColor = true;
+            this.btn_open_file.Click += new System.EventHandler(this.Btn_open_file_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "txt";
+            this.openFileDialog1.FileName = "*.txt";
+            this.openFileDialog1.Filter = "\"Text file (*.txt) | .txt\"";
+            this.openFileDialog1.Title = "Browse Rebate Forms";
+            // 
             // Form1
             // 
+            this.AcceptButton = this.btn_open_file;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 456);
+            this.Controls.Add(this.btn_open_file);
             this.Controls.Add(this.lbl_backspace_count_data);
             this.Controls.Add(this.lbl_total_time_data);
             this.Controls.Add(this.lbl_backspace_count);
@@ -188,6 +209,8 @@
         private System.Windows.Forms.Label lbl_backspace_count;
         private System.Windows.Forms.Label lbl_total_time_data;
         private System.Windows.Forms.Label lbl_backspace_count_data;
+        private System.Windows.Forms.Button btn_open_file;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 
