@@ -48,8 +48,8 @@ namespace Asg3_HXF180007
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine("File selected: " + openFileDialog1.FileName);
                 string fileName = openFileDialog1.FileName;
+                toolStripStatusLabel1.Text = "File analyzed. Output file created.";
 
                 InputFile file = new InputFile();
                 file.LoadFile(fileName);
@@ -179,16 +179,13 @@ namespace Asg3_HXF180007
             for (int i = 0; i < numberOfRecords -1; i++)
             {
                 DateTime previousEnd = DateTime.Parse(data[i, 14]);
-                Console.WriteLine(previousEnd);
 
                 DateTime currentEnd = DateTime.Parse(data[i + 1, 14]);
                 TimeSpan currentTime = TimeSpan.Parse(data[i + 1, 13]);
 
                 DateTime currentStart = currentEnd.Subtract(currentTime);
-                Console.WriteLine(currentStart);
 
                 TimeSpan timeTaken = currentStart.Subtract(previousEnd);
-                Console.WriteLine("Time Taken: " + timeTaken);
 
                 tempAverageInterTime += timeTaken;
 

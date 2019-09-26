@@ -48,6 +48,9 @@
             this.lbl_min_inter_time_data = new System.Windows.Forms.Label();
             this.lbl_max_inter_time_data = new System.Windows.Forms.Label();
             this.lbl_average_inter_time_data = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_record_num
@@ -228,12 +231,29 @@
             this.lbl_average_inter_time_data.Size = new System.Drawing.Size(0, 13);
             this.lbl_average_inter_time_data.TabIndex = 18;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 434);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(443, 22);
+            this.statusStrip1.TabIndex = 19;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(159, 17);
+            this.toolStripStatusLabel1.Text = "Open a rebate file to analyze.";
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_open_file;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 456);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lbl_average_inter_time_data);
             this.Controls.Add(this.lbl_max_inter_time_data);
             this.Controls.Add(this.lbl_min_inter_time_data);
@@ -256,6 +276,8 @@
             this.Name = "Form1";
             this.Text = "Rebate Form Analysis";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -283,6 +305,8 @@
         private System.Windows.Forms.Label lbl_min_inter_time_data;
         private System.Windows.Forms.Label lbl_max_inter_time_data;
         private System.Windows.Forms.Label lbl_average_inter_time_data;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 
