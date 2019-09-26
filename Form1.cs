@@ -172,9 +172,44 @@ namespace Asg3_HXF180007
         // Find minimum, maximum, and average amount of time spent between records
         private void findInterTimes()
         {
-            minInterTime = "0";
-            maxInterTime = "0";
-            averageInterTime = "0";
+            TimeSpan tempMinInterTime = TimeSpan.MaxValue;
+            TimeSpan tempMaxInterTime = TimeSpan.Zero;
+            TimeSpan tempAverageInterTime = TimeSpan.Zero;
+
+            for (int i = 0; i < numberOfRecords -1; i++)
+            {
+                DateTime previousEnd = DateTime.Parse(data[i, 14]);
+                Console.WriteLine(previousEnd);
+
+                DateTime currentEnd = DateTime.Parse(data[i + 1, 14]);
+                TimeSpan currentTime = TimeSpan.Parse(data[i + 1, 13]);
+
+                DateTime currentStart = currentEnd.Subtract(currentTime);
+                Console.WriteLine(currentStart);
+
+                TimeSpan timeTaken = currentStart.Subtract(previousEnd);
+                Console.WriteLine("Time Taken: " + timeTaken);
+
+                tempAverageInterTime += timeTaken;
+
+                if(timeTaken < tempMinInterTime)
+                {
+                    tempMinInterTime = timeTaken;
+                }
+                if(timeTaken > tempMaxInterTime)
+                {
+                    tempMaxInterTime = timeTaken;
+                }
+            }
+
+            minInterTime = tempMinInterTime.ToString(@"mm\:ss");
+            maxInterTime = tempMaxInterTime.ToString(@"mm\:ss");
+
+            int totalTime = (int)tempAverageInterTime.TotalMilliseconds;
+            totalTime = totalTime / (numberOfRecords - 1);
+            tempAverageInterTime = TimeSpan.FromMilliseconds(totalTime);
+            averageInterTime = tempAverageInterTime.ToString(@"mm\:ss");
+
             return;
         }
 
