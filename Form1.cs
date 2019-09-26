@@ -132,58 +132,41 @@ namespace Asg3_HXF180007
                 }
             }
             findMinEntryTime();
-            findMaxEntryTime();
-            findAverageEntryTime();
             findInterTimes();
             findTotalEntryTime();
             findTotalBackspaces();
         }
 
-        // Finds the minimum entry time for all records
-        public string findMinEntryTime()
+        // Finds the minimum, maximum, and average entry time for all records
+        private void findMinEntryTime()
         {
             TimeSpan tempMinTime = TimeSpan.Parse(data[0,13]);
+            TimeSpan tempMaxTime = TimeSpan.Parse(data[0, 13]);
+            TimeSpan tempAverageTime = TimeSpan.Zero;
+
             for (int i = 0; i < numberOfRecords; i++)
             {
                 TimeSpan current = TimeSpan.Parse(data[i, 13]);
-                if(current < tempMinTime)
+                tempAverageTime += current;
+
+                if (current < tempMinTime)
                 {
                     tempMinTime = current;
                 }
-            }
-            minTime = tempMinTime.ToString(@"mm\:ss");
-            return minTime;
-        }
-
-        // Finds the maxiumum entry time for all records
-        public string findMaxEntryTime()
-        {
-            TimeSpan tempMaxTime = TimeSpan.Parse(data[0, 13]);
-            for (int i = 0; i < numberOfRecords; i++)
-            {
-                TimeSpan current = TimeSpan.Parse(data[i, 13]);
                 if (current > tempMaxTime)
                 {
                     tempMaxTime = current;
                 }
             }
+            minTime = tempMinTime.ToString(@"mm\:ss");
             maxTime = tempMaxTime.ToString(@"mm\:ss");
-            return maxTime;
-        }
 
-        // Averages the entry time for all records
-        public string findAverageEntryTime()
-        {
-            TimeSpan tempAverageTime = TimeSpan.Zero;
-            for(int i = 0; i < numberOfRecords; i++)
-            {
-                tempAverageTime += TimeSpan.Parse(data[i, 13]);
-            }
             int time = (int)tempAverageTime.TotalSeconds;
             time = time / numberOfRecords;
             tempAverageTime = TimeSpan.FromSeconds(time);
             averageTime = tempAverageTime.ToString(@"mm\:ss");
-            return averageTime;
+
+            return;
         }
 
         // Find minimum, maximum, and average amount of time spent between records
@@ -196,7 +179,7 @@ namespace Asg3_HXF180007
         }
 
         // Finds total time spent entering all records
-        public string findTotalEntryTime()
+        private void findTotalEntryTime()
         {
             // Take first submission time and subtract the time taken to complete it
             DateTime dateStartTime = DateTime.Parse(data[0, 14]);
@@ -212,18 +195,18 @@ namespace Asg3_HXF180007
             TimeSpan tempTotalTime = dateEndTime - dateStartTime;
             totalTime = tempTotalTime.ToString(@"mm\:ss");
 
-            return totalTime;
+            return;
         }
 
         // Finds total backspaces used
-        public int findTotalBackspaces()
+        private void findTotalBackspaces()
         {
             backspaces = 0;
             for (int i = 0; i < numberOfRecords; i++)
             {
                 backspaces += Int32.Parse(data[i, 15]);
             }
-            return backspaces;
+            return;
         }
     }
 
