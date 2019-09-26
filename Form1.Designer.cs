@@ -42,6 +42,12 @@
             this.lbl_backspace_count_data = new System.Windows.Forms.Label();
             this.btn_open_file = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lbl_min_inner_time = new System.Windows.Forms.Label();
+            this.lbl_max_inter_time = new System.Windows.Forms.Label();
+            this.lbl_average_inter_time = new System.Windows.Forms.Label();
+            this.lbl_min_inter_time_data = new System.Windows.Forms.Label();
+            this.lbl_max_inter_time_data = new System.Windows.Forms.Label();
+            this.lbl_average_inter_time_data = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbl_record_num
@@ -168,12 +174,72 @@
             this.openFileDialog1.Filter = "\"Text file (*.txt) | .txt\"";
             this.openFileDialog1.Title = "Browse Rebate Forms";
             // 
+            // lbl_min_inner_time
+            // 
+            this.lbl_min_inner_time.AutoSize = true;
+            this.lbl_min_inner_time.Location = new System.Drawing.Point(38, 203);
+            this.lbl_min_inner_time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_min_inner_time.Name = "lbl_min_inner_time";
+            this.lbl_min_inner_time.Size = new System.Drawing.Size(139, 13);
+            this.lbl_min_inner_time.TabIndex = 13;
+            this.lbl_min_inner_time.Text = "Minimum Inter-Record Time:";
+            // 
+            // lbl_max_inter_time
+            // 
+            this.lbl_max_inter_time.AutoSize = true;
+            this.lbl_max_inter_time.Location = new System.Drawing.Point(38, 233);
+            this.lbl_max_inter_time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_max_inter_time.Name = "lbl_max_inter_time";
+            this.lbl_max_inter_time.Size = new System.Drawing.Size(142, 13);
+            this.lbl_max_inter_time.TabIndex = 14;
+            this.lbl_max_inter_time.Text = "Maximum Inter-Record Time:";
+            // 
+            // lbl_average_inter_time
+            // 
+            this.lbl_average_inter_time.AutoSize = true;
+            this.lbl_average_inter_time.Location = new System.Drawing.Point(38, 266);
+            this.lbl_average_inter_time.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_average_inter_time.Name = "lbl_average_inter_time";
+            this.lbl_average_inter_time.Size = new System.Drawing.Size(138, 13);
+            this.lbl_average_inter_time.TabIndex = 15;
+            this.lbl_average_inter_time.Text = "Average Inter-Record Time:";
+            // 
+            // lbl_min_inter_time_data
+            // 
+            this.lbl_min_inter_time_data.AutoSize = true;
+            this.lbl_min_inter_time_data.Location = new System.Drawing.Point(182, 203);
+            this.lbl_min_inter_time_data.Name = "lbl_min_inter_time_data";
+            this.lbl_min_inter_time_data.Size = new System.Drawing.Size(0, 13);
+            this.lbl_min_inter_time_data.TabIndex = 16;
+            // 
+            // lbl_max_inter_time_data
+            // 
+            this.lbl_max_inter_time_data.AutoSize = true;
+            this.lbl_max_inter_time_data.Location = new System.Drawing.Point(185, 233);
+            this.lbl_max_inter_time_data.Name = "lbl_max_inter_time_data";
+            this.lbl_max_inter_time_data.Size = new System.Drawing.Size(0, 13);
+            this.lbl_max_inter_time_data.TabIndex = 17;
+            // 
+            // lbl_average_inter_time_data
+            // 
+            this.lbl_average_inter_time_data.AutoSize = true;
+            this.lbl_average_inter_time_data.Location = new System.Drawing.Point(181, 266);
+            this.lbl_average_inter_time_data.Name = "lbl_average_inter_time_data";
+            this.lbl_average_inter_time_data.Size = new System.Drawing.Size(0, 13);
+            this.lbl_average_inter_time_data.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btn_open_file;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(443, 456);
+            this.Controls.Add(this.lbl_average_inter_time_data);
+            this.Controls.Add(this.lbl_max_inter_time_data);
+            this.Controls.Add(this.lbl_min_inter_time_data);
+            this.Controls.Add(this.lbl_average_inter_time);
+            this.Controls.Add(this.lbl_max_inter_time);
+            this.Controls.Add(this.lbl_min_inner_time);
             this.Controls.Add(this.btn_open_file);
             this.Controls.Add(this.lbl_backspace_count_data);
             this.Controls.Add(this.lbl_total_time_data);
@@ -211,6 +277,12 @@
         private System.Windows.Forms.Label lbl_backspace_count_data;
         private System.Windows.Forms.Button btn_open_file;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label lbl_min_inner_time;
+        private System.Windows.Forms.Label lbl_max_inter_time;
+        private System.Windows.Forms.Label lbl_average_inter_time;
+        private System.Windows.Forms.Label lbl_min_inter_time_data;
+        private System.Windows.Forms.Label lbl_max_inter_time_data;
+        private System.Windows.Forms.Label lbl_average_inter_time_data;
     }
 }
 

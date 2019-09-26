@@ -26,73 +26,91 @@ namespace Asg3_HXF180007
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string fileName = "CS6326Asg2.txt";
 
-            InputFile file = new InputFile();
-            file.LoadFile(fileName);
-            ShowData(file);
-
-            OutputFile newFile = new OutputFile();
-            newFile.createFile(file, fileName);
         }
 
         // Shows data produced from InputFile class
         private void ShowData(InputFile file)
         {
-            lbl_record_num_data.Text = (file.getNumberOfRecords()).ToString();
-            lbl_min_entry_time_data.Text = file.findMinEntryTime();
-            lbl_max_entry_time_data.Text = file.findMaxEntryTime();
-            lbl_average_entry_time_data.Text = file.findAverageEntryTime();
-
-            lbl_total_time_data.Text = file.findTotalEntryTime();
-            lbl_backspace_count_data.Text = (file.findTotalBackspaces()).ToString();
+            lbl_record_num_data.Text = file.GetNumberOfRecords().ToString();
+            lbl_min_entry_time_data.Text = file.GetMinTime();
+            lbl_max_entry_time_data.Text = file.GetMaxTime();
+            lbl_average_entry_time_data.Text = file.GetAverageTime();
+            lbl_min_inter_time_data.Text = file.GetMinInterTime();
+            lbl_max_inter_time_data.Text = file.GetMaxInterTime();
+            lbl_average_inter_time_data.Text = file.GetAverageInterTime();
+            lbl_total_time_data.Text = file.GetTotalTime();
+            lbl_backspace_count_data.Text = file.GetBackspaces().ToString();
         }
 
+        // Opens file based on user selection and analyzes it
         private void Btn_open_file_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("button clicked");
-            openFileDialog1.ShowDialog();
-            /*
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine("File selected");
-            } */
+                Console.WriteLine("File selected: " + openFileDialog1.FileName);
+                string fileName = openFileDialog1.FileName;
+
+                InputFile file = new InputFile();
+                file.LoadFile(fileName);
+                ShowData(file);
+
+                OutputFile newFile = new OutputFile();
+                newFile.createFile(file, fileName);
+            } 
         }
     }
 
     // Opens the user defined input file and evaluates the data.
     class InputFile {
+
         // Analysis data variables
         private int numberOfRecords;
         private string minTime;
         private string maxTime;
         private string averageTime;
+        private string minInterTime;
+        private string maxInterTime;
+        private string averageInterTime;
         private string totalTime;
         private int backspaces;
 
         private string[,] data;
 
-        public int getNumberOfRecords()
+        // Get methods for analysis data variables
+        public int GetNumberOfRecords()
         {
             return numberOfRecords;
         }
-        public string getMinTime()
+        public string GetMinTime()
         {
             return minTime;
         }
-        public string getMaxTime()
+        public string GetMaxTime()
         {
             return maxTime;
         }
-        public string getAverageTime()
+        public string GetAverageTime()
         {
             return averageTime;
         }
-        public string getTotalTime()
+        public string GetMinInterTime()
+        {
+            return minInterTime;
+        }
+        public string GetMaxInterTime()
+        {
+            return maxInterTime;
+        }
+        public string GetAverageInterTime()
+        {
+            return averageInterTime;
+        }
+        public string GetTotalTime()
         {
             return totalTime;
         }
-        public int getBackspaces()
+        public int GetBackspaces()
         {
             return backspaces;
         }
@@ -113,6 +131,12 @@ namespace Asg3_HXF180007
                     data[i, j] = element[j];
                 }
             }
+            findMinEntryTime();
+            findMaxEntryTime();
+            findAverageEntryTime();
+            findInterTimes();
+            findTotalEntryTime();
+            findTotalBackspaces();
         }
 
         // Finds the minimum entry time for all records
@@ -162,6 +186,15 @@ namespace Asg3_HXF180007
             return averageTime;
         }
 
+        // Find minimum, maximum, and average amount of time spent between records
+        private void findInterTimes()
+        {
+            minInterTime = "0";
+            maxInterTime = "0";
+            averageInterTime = "0";
+            return;
+        }
+
         // Finds total time spent entering all records
         public string findTotalEntryTime()
         {
@@ -206,15 +239,15 @@ namespace Asg3_HXF180007
             // Create a file to write to and enters data
             using (StreamWriter sw = File.CreateText(newFileName))
             {
-                sw.WriteLine("Number of records: " + file.getNumberOfRecords());
-                sw.WriteLine("Minimum entry time: " + file.getMinTime());
-                sw.WriteLine("Maximum entry time: " + file.getMaxTime());
-                sw.WriteLine("Average entry time: " + file.getAverageTime());
-                sw.WriteLine("Minimum inter-record time: ");
-                sw.WriteLine("Maximum inter-record time: ");
-                sw.WriteLine("Average inter-record time: ");
-                sw.WriteLine("Total time: " + file.getTotalTime());
-                sw.WriteLine("Backspace count: " + file.getBackspaces());
+                sw.WriteLine("Number of records: " + file.GetNumberOfRecords());
+                sw.WriteLine("Minimum entry time: " + file.GetMinTime());
+                sw.WriteLine("Maximum entry time: " + file.GetMaxTime());
+                sw.WriteLine("Average entry time: " + file.GetAverageTime());
+                sw.WriteLine("Minimum inter-record time: " + file.GetMinInterTime());
+                sw.WriteLine("Maximum inter-record time: " + file.GetMinInterTime());
+                sw.WriteLine("Average inter-record time: " + file.GetAverageInterTime());
+                sw.WriteLine("Total time: " + file.GetTotalTime());
+                sw.WriteLine("Backspace count: " + file.GetBackspaces());
             }
         }
     }

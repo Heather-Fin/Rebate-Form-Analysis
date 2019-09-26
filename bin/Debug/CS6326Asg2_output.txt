@@ -2,8 +2,8 @@ Number of records: 10
 Minimum entry time: 00:34
 Maximum entry time: 00:57
 Average entry time: 00:45
-Minimum inter-record time: 
-Maximum inter-record time: 
-Average inter-record time: 
+Minimum inter-record time: 0
+Maximum inter-record time: 0
+Average inter-record time: 0
 Total time: 33:19
 Backspace count: 25
