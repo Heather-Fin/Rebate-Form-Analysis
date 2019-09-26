@@ -33,26 +33,58 @@ namespace Asg3_HXF180007
             ShowData(file);
 
             OutputFile newFile = new OutputFile();
-            newFile.createFile(fileName);
+            newFile.createFile(file, fileName);
         }
 
         // Shows data produced from InputFile class
         private void ShowData(InputFile file)
         {
-            lbl_record_num_data.Text = file.numberOfRecords.ToString();
-            lbl_min_entry_time_data.Text = (file.findMinEntryTime()).ToString(@"mm\:ss");
-            lbl_max_entry_time_data.Text = (file.findMaxEntryTime()).ToString(@"mm\:ss");
-            lbl_average_entry_time_data.Text = (file.findAverageEntryTime()).ToString(@"mm\:ss");
+            lbl_record_num_data.Text = (file.getNumberOfRecords()).ToString();
+            lbl_min_entry_time_data.Text = file.findMinEntryTime();
+            lbl_max_entry_time_data.Text = file.findMaxEntryTime();
+            lbl_average_entry_time_data.Text = file.findAverageEntryTime();
 
-            lbl_total_time_data.Text = (file.findTotalEntryTime()).ToString(@"mm\:ss");
+            lbl_total_time_data.Text = file.findTotalEntryTime();
             lbl_backspace_count_data.Text = (file.findTotalBackspaces()).ToString();
         }
     }
 
     // Opens the user defined input file and evaluates the data.
     class InputFile {
-        public int numberOfRecords;
+        // Analysis data variables
+        private int numberOfRecords;
+        private string minTime;
+        private string maxTime;
+        private string averageTime;
+        private string totalTime;
+        private int backspaces;
+
         private string[,] data;
+
+        public int getNumberOfRecords()
+        {
+            return numberOfRecords;
+        }
+        public string getMinTime()
+        {
+            return minTime;
+        }
+        public string getMaxTime()
+        {
+            return maxTime;
+        }
+        public string getAverageTime()
+        {
+            return averageTime;
+        }
+        public string getTotalTime()
+        {
+            return totalTime;
+        }
+        public int getBackspaces()
+        {
+            return backspaces;
+        }
 
         // Handles opening and reading the user defined input file.
         public void LoadFile(string fileName)
@@ -73,51 +105,54 @@ namespace Asg3_HXF180007
         }
 
         // Finds the minimum entry time for all records
-        public TimeSpan findMinEntryTime()
+        public string findMinEntryTime()
         {
-            TimeSpan minTime = TimeSpan.Parse(data[0,13]);
+            TimeSpan tempMinTime = TimeSpan.Parse(data[0,13]);
             for (int i = 0; i < numberOfRecords; i++)
             {
-                TimeSpan temp = TimeSpan.Parse(data[i, 13]);
-                if(temp < minTime)
+                TimeSpan current = TimeSpan.Parse(data[i, 13]);
+                if(current < tempMinTime)
                 {
-                    minTime = temp;
+                    tempMinTime = current;
                 }
             }
+            minTime = tempMinTime.ToString(@"mm\:ss");
             return minTime;
         }
 
         // Finds the maxiumum entry time for all records
-        public TimeSpan findMaxEntryTime()
+        public string findMaxEntryTime()
         {
-            TimeSpan maxTime = TimeSpan.Parse(data[0, 13]);
+            TimeSpan tempMaxTime = TimeSpan.Parse(data[0, 13]);
             for (int i = 0; i < numberOfRecords; i++)
             {
-                TimeSpan temp = TimeSpan.Parse(data[i, 13]);
-                if (temp > maxTime)
+                TimeSpan current = TimeSpan.Parse(data[i, 13]);
+                if (current > tempMaxTime)
                 {
-                    maxTime = temp;
+                    tempMaxTime = current;
                 }
             }
+            maxTime = tempMaxTime.ToString(@"mm\:ss");
             return maxTime;
         }
 
         // Averages the entry time for all records
-        public TimeSpan findAverageEntryTime()
+        public string findAverageEntryTime()
         {
-            TimeSpan averageTime = TimeSpan.Zero;
+            TimeSpan tempAverageTime = TimeSpan.Zero;
             for(int i = 0; i < numberOfRecords; i++)
             {
-                averageTime += TimeSpan.Parse(data[i, 13]);
+                tempAverageTime += TimeSpan.Parse(data[i, 13]);
             }
-            int time = (int)averageTime.TotalSeconds;
+            int time = (int)tempAverageTime.TotalSeconds;
             time = time / numberOfRecords;
-            averageTime = TimeSpan.FromSeconds(time);
+            tempAverageTime = TimeSpan.FromSeconds(time);
+            averageTime = tempAverageTime.ToString(@"mm\:ss");
             return averageTime;
         }
 
         // Finds total time spent entering all records
-        public TimeSpan findTotalEntryTime()
+        public string findTotalEntryTime()
         {
             // Take first submission time and subtract the time taken to complete it
             DateTime dateStartTime = DateTime.Parse(data[0, 14]);
@@ -130,7 +165,8 @@ namespace Asg3_HXF180007
             DateTime dateEndTime = DateTime.Parse(data[numberOfRecords - 1, 14]);
 
             // Subtract the start time from the end time
-            TimeSpan totalTime = dateEndTime - dateStartTime;
+            TimeSpan tempTotalTime = dateEndTime - dateStartTime;
+            totalTime = tempTotalTime.ToString(@"mm\:ss");
 
             return totalTime;
         }
@@ -138,7 +174,7 @@ namespace Asg3_HXF180007
         // Finds total backspaces used
         public int findTotalBackspaces()
         {
-            int backspaces = 0;
+            backspaces = 0;
             for (int i = 0; i < numberOfRecords; i++)
             {
                 backspaces += Int32.Parse(data[i, 15]);
@@ -150,7 +186,7 @@ namespace Asg3_HXF180007
     // Creates a new file and stores the analysis data
     class OutputFile
     {
-        public void createFile(string fileName)
+        public void createFile(InputFile file, string fileName)
         {
             // Removes ".txt" from fileName to add new ending for output file
             string newFileName = fileName.Remove(fileName.Length -4, 4); 
@@ -160,15 +196,15 @@ namespace Asg3_HXF180007
             // Create a file to write to and enters data
             using (StreamWriter sw = File.CreateText(newFileName))
             {
-                sw.WriteLine("Number of records: ");
-                sw.WriteLine("Minimum entry time: ");
-                sw.WriteLine("Maximum entry time: ");
-                sw.WriteLine("Average entry time: ");
+                sw.WriteLine("Number of records: " + file.getNumberOfRecords());
+                sw.WriteLine("Minimum entry time: " + file.getMinTime());
+                sw.WriteLine("Maximum entry time: " + file.getMaxTime());
+                sw.WriteLine("Average entry time: " + file.getAverageTime());
                 sw.WriteLine("Minimum inter-record time: ");
                 sw.WriteLine("Maximum inter-record time: ");
                 sw.WriteLine("Average inter-record time: ");
-                sw.WriteLine("Total time: ");
-                sw.WriteLine("Backspace count: ");
+                sw.WriteLine("Total time: " + file.getTotalTime());
+                sw.WriteLine("Backspace count: " + file.getBackspaces());
             }
         }
     }
