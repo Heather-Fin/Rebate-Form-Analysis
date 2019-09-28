@@ -1,0 +1,4 @@
+Aaaaaaaaaa1	F	Bbbbbbbbbb	1234 Main St.		Dallas	TX	75001-0000	Male	(111) 222-3333	abc@utdallas.edu	Yes	09/26/2019	00:00:26.39	1:28:26 AM	3	
+Aaaaaaaaaa2	F	Bbbbbbbbbb	1234 Main St.		Dallas	TX	75001-0000	Female	(111) 222-3333	abc@utdallas.edu	Yes	09/26/2019	00:00:25.00	1:28:51 AM	0	
+Aaaaaaaaaa3	F	Bbbbbbbbbb	1234 Main St.		Dallas	TX	75001-0000	Male	(111) 222-3333	abc@utdallas.edu	Yes	09/26/2019	00:00:26.74	1:29:18 AM	2	
+Aaaaaaaaaa4	F	Bbbbbbbbbb	1234 Main St.		Dallas	TX	75001-0000	Female	(111) 222-3333	abc@utdallas.edu	Yes	09/26/2019	00:00:32.56	1:30:30 AM	0	

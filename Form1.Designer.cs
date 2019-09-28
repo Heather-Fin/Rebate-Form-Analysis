@@ -175,6 +175,7 @@
             this.openFileDialog1.DefaultExt = "txt";
             this.openFileDialog1.FileName = "*.txt";
             this.openFileDialog1.Filter = "\"Text file (*.txt) | .txt\"";
+            this.openFileDialog1.RestoreDirectory = true;
             this.openFileDialog1.Title = "Browse Rebate Forms";
             // 
             // lbl_min_inner_time

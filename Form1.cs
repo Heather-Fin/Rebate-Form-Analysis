@@ -46,10 +46,23 @@ namespace Asg3_HXF180007
         // Opens file based on user selection and analyzes it
         private void Btn_open_file_Click(object sender, EventArgs e)
         {
+
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Title = "Browse Rebate Text Files",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "txt",
+                Filter = "txt files (*.txt)|*.txt",
+                Multiselect = false,
+            }; 
+
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string fileName = openFileDialog1.FileName;
-                toolStripStatusLabel1.Text = "File analyzed. Output file created.";
+                toolStripStatusLabel1.Text = openFileDialog1.SafeFileName + " analyzed. Output file created.";
 
                 InputFile file = new InputFile();
                 file.LoadFile(fileName);
@@ -59,6 +72,8 @@ namespace Asg3_HXF180007
                 newFile.createFile(file, fileName);
             } 
         }
+
+
     }
 
     // Opens the user defined input file and evaluates the data.
